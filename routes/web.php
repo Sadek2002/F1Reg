@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\HomepageController;
 
 
 Route::get('/', function () {
@@ -10,12 +11,14 @@ Route::get('/', function () {
 
 
 
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // profiles
 Route::resource('profiles', ProfileController::class);
+
+// homepage
+Route::resource('homepage', HomepageController::class);
 
 
 

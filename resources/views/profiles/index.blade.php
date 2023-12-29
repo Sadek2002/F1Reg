@@ -4,9 +4,9 @@
     <div class="mt-4 p-5 bg-info text-white rounded">
         <h1>F1 Registration App</h1>
         <p>INDEX</p>
-        <a href="{{route('profiles.create')}}" class="btn btn-sm btn-outline-primary">Create Profile</a>
+        <a href="{{ route('profiles.create') }}" class="btn btn-sm btn-outline-primary">Create Profile</a>
     </div>
-    
+
     <div class="container">
         <table class="table">
             <th>User ID</th>
