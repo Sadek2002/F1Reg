@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\ResultController;
 
 
 Route::get('/', function () {
@@ -17,29 +18,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // profiles
 Route::resource('profiles', ProfileController::class);
 
+// results
+Route::resource('results', ResultController::class);
+
 // homepage
 Route::resource('homepage', HomepageController::class);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
