@@ -51,59 +51,21 @@
             </tr>
             <tr>
                 <td style="width: 10%">#</td>
-                <td style="width: 80%">Username</td>
-                <td style="width: 10%">Time</td>
+                <td style="width: 40%">Username (Not done!)</td>
+                <td style="width: 25%">Time</td>
+                <td style="width: 25%">Race ID</td>
             </tr>
-            <tr>
-                <td>1</td>
-                <td>Sadek2002</td>
-                <td>12:1002</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Sadek2002</td>
-                <td>12:1002</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Sadek2002</td>
-                <td>12:1002</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Sadek2002</td>
-                <td>12:1002</td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>Sadek2002</td>
-                <td>12:1002</td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>Sadek2002</td>
-                <td>12:1002</td>
-            </tr>
-            <tr>
-                <td>7</td>
-                <td>Sadek2002</td>
-                <td>12:1002</td>
-            </tr>
-            <tr>
-                <td>8</td>
-                <td>Sadek2002</td>
-                <td>12:1002</td>
-            </tr>
-            <tr>
-                <td>9</td>
-                <td>Sadek2002</td>
-                <td>12:1002</td>
-            </tr>
-            <tr>
-                <td>10</td>
-                <td>Sadek2002</td>
-                <td>12:1002</td>
-            </tr>
+            @php $top = 1; @endphp
+            @foreach ($raceResults->sortBy('result.laptime')->take(10) as $raceResult)
+                <tr>
+                    <td>{{ $top++ }}</td>
+                    <td>{{ $raceResult->result->user_id }}</td>
+                    <td>{{ $raceResult->result->laptime }}</td>
+                    <td>{{ $raceResult->race->id }}</td>
+                </tr>
+            @endforeach
+
+
         </table>
     </div>
     @include('layouts.footer');

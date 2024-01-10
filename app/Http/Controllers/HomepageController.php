@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Result;
+use App\Models\race;
+use App\Models\RaceResult;
+use Illuminate\Support\Collection;
 
 class HomepageController extends Controller
 {
@@ -21,8 +25,17 @@ class HomepageController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    // public function index()
+    // {
+    //     return view('homepage');
+
+    // }
+
+
     public function index()
     {
-        return view('homepage');
+        $raceResults = RaceResult::with(['race', 'result'])->get();
+
+        return view('homepage', ['raceResults' => $raceResults]);
     }
 }
