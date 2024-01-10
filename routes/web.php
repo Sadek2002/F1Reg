@@ -3,17 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomepageController;
-use App\Http\Controllers\LeaderboardController;
 
-Route::get('leaderboard', function () {
-    $race = \App\Models\race::find(1);
-    return view('leaderboard', compact(['race',]));
+Route::get('{id}/meow', [App\Http\Controllers\LeaderboardController::class, 'mrow'])->name('meow');
+
+Route::get('/', function () {
+    return view('welcome');
 });
-
-
-
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // profiles
 Route::resource('profiles', ProfileController::class);
@@ -22,11 +18,7 @@ Route::resource('profiles', ProfileController::class);
 Route::resource('homepage', HomepageController::class);
 
 //Leaderboard
-
-
-
-
-
+Route::get('leaderboards', [App\Http\Controllers\LeaderboardController::class, 'index'])->name('leaderboards');
 
 
 
