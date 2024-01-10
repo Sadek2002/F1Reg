@@ -3,10 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\LeaderboardController;
 
-
-Route::get('/', function () {
-    return view('welcome');
+Route::get('leaderboard', function () {
+    $race = \App\Models\race::find(1);
+    return view('leaderboard', compact(['race',]));
 });
 
 
@@ -19,6 +20,9 @@ Route::resource('profiles', ProfileController::class);
 
 // homepage
 Route::resource('homepage', HomepageController::class);
+
+//Leaderboard
+
 
 
 
