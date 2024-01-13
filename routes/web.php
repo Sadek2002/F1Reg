@@ -20,6 +20,7 @@ Route::resource('results', ResultController::class);
 // homepage
 Route::resource('homepage', HomepageController::class);
 
-// Leaderboards
+// Leaderboards, each route uses a different method in our LeaderboardController class.
 Route::get('{id}/leaderboard', [App\Http\Controllers\LeaderboardController::class, 'races'])->name('leaderboard');
 Route::get('leaderboards', [App\Http\Controllers\LeaderboardController::class, 'index'])->name('leaderboards');
+Route::get('racescore', [App\Http\Controllers\LeaderboardController::class, 'searchRace'])->name('racescore');
