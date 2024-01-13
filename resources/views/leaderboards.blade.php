@@ -6,8 +6,8 @@
     <br>
     <hr>
 @endforeach
-<h1>meow</h1>
+<h1>All race leaderboards</h1>
 @foreach($races as $racess)
-    <button ><a href="{{ route('meow',$racess->id) }}" class="btn btn-primary">Edit</a></button>
+    <button ><a href="{{ route('leaderboard',$racess->id) }}" class="btn btn-primary">{{$racess->racename}} {{$racess->created_at}}</a></button>
 @endforeach
 
