@@ -14,6 +14,9 @@ class result extends Model
      * And a result can be part of many Races, so we use a belongsToMany.
      * See the comment in database->migration-> Create_race_result_table for more detail about the relationships.
      */
+
+    protected $fillable = ['user_id', 'laptime'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -22,5 +25,4 @@ class result extends Model
     {
         return $this->belongsToMany(Race::class);
     }
-
 }

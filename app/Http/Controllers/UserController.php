@@ -40,9 +40,11 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            // Add other validation rules as needed
+            'password' => 'required|min:8',
+            'userRole' => 'required|in:0,1',
         ]);
 
+        // Remove the hardcoded 'id' input
         User::create($request->all());
 
         return redirect()->route('users.index')->with('success', 'User created successfully');
@@ -84,7 +86,22 @@ class UserController extends Controller
             // Add other validation rules as needed
         ]);
 
-        $user->update($request->all());
+        $data = [
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+        ];
+
+        // Check if a new password is provided
+        if ($request->filled('password')) {
+            $data['password'] = bcrypt($request->input('password'));
+        }
+
+        // Update the userRole if it exists in the request
+        if ($request->filled('userRole')) {
+            $data['userRole'] = $request->input('userRole');
+        }
+
+        $user->update($data); 
 
         return redirect()->route('users.index')->with('success', 'User updated successfully');
     }
