@@ -34,13 +34,14 @@ class LeaderboardController extends Controller
         /**
          * We can construct our query with the race::query, in there we do our where query that searches based on the get request.
          * We then execute the query and send the result to the racescore view.
-        */
+         */
         $query = race::query();
 
         if (request()->has('search')) {
-            $query->where('racename', 'like', '%' . request()->get('search') . '%');
+            $query->where('racename', '=', request()->get('search'));
             $race = $query->get();
-            return view('racescore', ['race' => $race]);
+
         }
+        return view('racescore', ['race' => $race]);
     }
 }
