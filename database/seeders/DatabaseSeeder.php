@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             'userRole' => '1',
         ]);
         //with $this->call we call our race_result & Profile seeder class and run the class to seed our database.
-        $this->call(race_result::class);
         $this->call(ProfileSeeder::class);
+        $this->call(race_result::class);
+
     }
 }
