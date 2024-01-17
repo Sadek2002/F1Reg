@@ -22,7 +22,7 @@ class ResultFactory extends Factory
     */
         return [
             'user_id' => \App\Models\User::factory(),
-            'laptime' => fake()->numberBetween(1,10),
+            'laptime' => number_format(fake()->numberBetween(1000, 10000) / 1000, 3)
         ];
     }
 }
