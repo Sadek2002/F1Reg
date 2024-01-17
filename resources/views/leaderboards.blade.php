@@ -1,22 +1,97 @@
-<div>
-    <form method="GET" action="{{ route('racescore') }}">
-        <label>
-            <input type="text" name="search" placeholder="Find Race">
-        </label>
-    </form>
-</div>
-{{--We accses the race table and display the name of the race. --}}
-{{--And in our for each we go into the result table and display the data in there.--}}
-<h1>RaceName: {{$race->racename}}</h1>
-@foreach($race->results->sortBy('laptime') as $results)
-    <h1>Laptime : {{ $results->laptime}}</h1>
-    <h1>User ID: {{$results->user_id}}</h1>
-    <h1>Username: {{$results->user->name}}</h1>
-    <br>
-    <hr>
-@endforeach
-<h1>All race leaderboards</h1>
-@foreach($races as $racess)
-    <button><a href="{{ route('leaderboard',$racess->id) }}" class="btn btn-primary">{{$racess->racename}}</a></button>
-@endforeach
+@extends('boostrap.app')
 
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .background-image {
+            background-image: url('images/background-image.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            flex: 1;
+        }
+
+        table {
+            border-radius: 10px;
+            border: 1px solid white;
+            background-color: #484444;
+            margin: auto;
+            width: 50%;
+            z-index: 1;
+            position: relative;
+        }
+
+        table.text-white {
+            border-collapse: separate;
+            border-spacing: 10px;
+        }
+    </style>
+</head>
+<body class="background-image">
+@include('layouts.header');
+
+
+<div class="container mt-5">
+    <div>
+        <form method="GET" action="{{ route('racescore') }}">
+            <label>
+                <input type="text" name="search" placeholder="Find Race">
+            </label>
+        </form>
+    </div>
+
+    <table class="text-white mb-5">
+        <tr>
+            <th colspan="3">Scoreboard Latest Race: {{$race->racename}}</th>
+        </tr>
+        <tr>
+            <td style="width: 25%">Rank</td>
+            <td style="width: 40%">Username</td>
+            <td style="width: 25%">Time</td>
+            <td style="width: 25%">Approved at:</td>
+        </tr>
+        {{--We accses the race table and display the name of the race. --}}
+        {{--And in our for each we go into the result table and display the data in there.--}}
+        @php($i = 1)
+        @foreach($race->results->sortBy('laptime') as $results)
+            <tr>
+                <td>{{$i}}</td>
+                <td>{{$results->user->name}}</td>
+                <td>{{ $results->laptime}}</td>
+                <td>{{ $results->updated_at}}</td>
+            </tr>
+            @php($i < 25 . $i++)
+        @endforeach
+
+
+    </table>
+</div>
+<div>
+    <table class="text-white mb-5">
+        <tr>
+            <th colspan="3">
+                All races
+            </th>
+        </tr>
+        @foreach($races as $racess)
+            <tr>
+                <td><a href="{{ route('leaderboard',$racess->id) }}">{{$racess->racename}}</a></td>
+            </tr>
+        @endforeach
+    </table>
+</div>
+{{--@include('layouts.footer');--}}
+</body>
+</html>
