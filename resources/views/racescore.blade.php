@@ -74,7 +74,7 @@
                     <td>{{ $results->laptime}}</td>
                     <td>{{ $results->updated_at}}</td>
                 </tr>
-                @php($i < 25 . $i++)
+                @php($i++)
             @endforeach
 
 

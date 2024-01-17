@@ -39,10 +39,12 @@
         }
     </style>
 </head>
-
 <body class="background-image">
-@include('layouts.header')
+@include('layouts.header');
+
+
 <div class="container mt-5">
+    <h1>meow</h1>
     <table class="text-white mb-5">
         <tr>
             {{--We accses the race table and display the name of the race. --}}
@@ -63,7 +65,7 @@
                 <td>{{ $results->laptime}}</td>
                 <td>{{$results->updated_at}}</td>
             </tr>
-            @php($i < 25 . $i++)
+            @php($i++)
         @endforeach
 
 

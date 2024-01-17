@@ -11,16 +11,16 @@ class race_result extends Seeder
 {
     public function run()
     {
-        // We create 2 races by accessing the race factory
-        $races = Race::factory(2)->create();
+        // We create 2 races by calling on the race factory function.
+        $race = Race::factory(2)->create();
 
         // For each race we have in our database(currently set to 2) we generate 25 results.
-        $races->each(function ($race) {
-            $results = Result::factory(25)->create();
+        $race->each(function ($races) {
+            $result = Result::factory(25)->create();
 
             // With the attach method we now link each result with the races, this fills our Pivot table.
-            foreach ($results as $result) {
-                $race->results()->attach($result->id);
+            foreach ($result as $results) {
+                $races->results()->attach($results->id);
             }
         });
     }
