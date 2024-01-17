@@ -14,7 +14,7 @@ class ProfileSeeder extends Seeder
      */
     public function run(): void
     {
-        //Users met een profile
+        //Generates 10 users with their own profile
         User::factory(10)
             ->create()
             ->each(function ($user){
@@ -22,11 +22,5 @@ class ProfileSeeder extends Seeder
                 ->save(Profile::factory()->make());
             });
 
-            \App\Models\User::factory()->create([
-                'name' => 'Renas',
-                'email' => 'renas@gmail.com',
-                'userRole' => '1',
-                'password' => 'admin',
-            ]);
     }
 }
