@@ -36,8 +36,6 @@
                 </tr>
                 @php($i++)
             @endforeach
-
-
         </table>
     </div>
     {{-- @include('layouts.footer'); --}}
