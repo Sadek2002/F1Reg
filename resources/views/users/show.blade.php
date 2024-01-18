@@ -7,23 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <title>Document</title>
-    <style>
-        table {
-            border-radius: 10px;
-            border: 1px solid white;
-            background-color: #484444;
-            margin: auto;
-            width: 100%;
-            z-index: 1;
-            position: relative;
-        }
-
-        table.text-white {
-            border-collapse: separate;
-            border-spacing: 10px;
-        }
-    </style>
 </head>
 
 <body class="bg-dark">
@@ -39,7 +24,7 @@
         <p class="text-white">Email: {{ $user->email }}</p>
 
         @if ($raceResults->isNotEmpty())
-            <table class="text-white mb-5">
+            <table class="text-white mb-5" width="100%">
                 <tr>
                     <th>Race name</th>
                     <th>Score</th>
@@ -48,7 +33,6 @@
                     <tr>
                         <td>{{ $raceResult->race->racename }}</td>
                         <td>{{ $raceResult->result->laptime }}</td>
-                        <td><a href="{{ $raceResult->race->racename }}"></a></td>
                     </tr>
                 @endforeach
             </table>

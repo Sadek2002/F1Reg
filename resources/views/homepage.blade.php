@@ -7,36 +7,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
     <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            margin: 0;
-            padding: 0;
-        }
-
-        .background-image {
-            background-image: url('images/background-image.jpg');
-            background-repeat: no-repeat;
-            background-size: cover;
-            flex: 1;
-        }
-
-        table {
-            border-radius: 10px;
-            border: 1px solid white;
-            background-color: #484444;
-            margin: auto;
-            width: 50%;
-            z-index: 1;
-            position: relative;
-        }
-
-        table.text-white {
-            border-collapse: separate;
-            border-spacing: 10px;
-        }
     </style>
 </head>
 
@@ -45,7 +18,7 @@
 
 
     <div class="container mt-5">
-        <table class="text-white mb-5">
+        <table class="text-white mb-5" width="70%">
             <tr>
                 <th colspan="3">Scoreboard Latest Race</th>
             </tr>

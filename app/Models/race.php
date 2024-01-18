@@ -14,6 +14,6 @@ class race extends Model
     use HasFactory;
     public function results()
     {
-        return $this->belongsToMany(Result::class);
+        return $this->belongsToMany(Result::class, 'race_results');
     }
 }

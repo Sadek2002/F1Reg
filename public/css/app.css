@@ -1,0 +1,49 @@
+.background-image {
+    background-image: url('../images/background-image.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    flex: 1;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    border-radius: 10px;
+    border: 1px solid white;
+    background-color: #484444;
+    margin: auto;
+    z-index: 1;
+    position: relative;
+}
+
+table.text-white {
+    border-collapse: separate;
+    border-spacing: 10px;
+}
+
+.container.mt-4 {
+    margin: 0 32.5% 0 32.5%;
+}
+
+form {
+    width: 35%;
+}
+
+.container {
+    margin: 10px;
+}
+
+table, table.text-white {
+    border-radius: 10px;
+    border: 1px solid white;
+    background-color: #484444;
+    margin: auto;
+    z-index: 1;
+    position: relative;
+}

@@ -13,7 +13,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    <link rel="stylesheet" href="resources/css/app.css">
+    <link rel="stylesheet" href="css/app.css">
 
     {{--    <style> --}}
     {{--        /* Stel de achtergrondafbeelding in voor de <main> sectie */ --}}
