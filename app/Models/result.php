@@ -12,7 +12,7 @@ class result extends Model
      * We define our relationships that the result table has in here.
      * A result belongs to 1 user, so we use a belongsTO.
      * And a result can be part of many Races, so we use a belongsToMany.
-     * See the comment in database->migration-> Create_race_result_table for more detail about the relationships.
+     * See the comment in database->migration-> Create_race_results_table for more detail about the relationships.
      */
 
     protected $fillable = ['user_id', 'laptime'];

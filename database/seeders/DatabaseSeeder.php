@@ -19,9 +19,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'userRole' => '1',
         ]);
-        //with $this->call we call our Profile seeder & race_result class and run the class to seed our database.
+        //with $this->call we call our Profile seeder & race_results class and run the class to seed our database.
         $this->call(ProfileSeeder::class);
-        $this->call(race_result::class);
+        $this->call(race_results::class);
 
     }
 }

@@ -7,7 +7,7 @@ use App\Models\result;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class race_result extends Seeder
+class race_results extends Seeder
 {
     public function run()
     {
