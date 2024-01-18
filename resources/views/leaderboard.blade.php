@@ -17,7 +17,7 @@
         }
 
         .background-image {
-            background-image: url('images/background-image.jpg');
+            background-image: url('../images/background-image.jpg');
             background-repeat: no-repeat;
             background-size: cover;
             flex: 1;
@@ -44,7 +44,6 @@
 
 
 <div class="container mt-5">
-    <h1>meow</h1>
     <table class="text-white mb-5">
         <tr>
             {{--We accses the race table and display the name of the race. --}}
@@ -58,15 +57,15 @@
         </tr>
         {{--And in our for each we go into the result table and display the data in there.--}}
         @php($i = 1)
-        @foreach($allRaces->results->sortBy('laptime') as $results)
-            <tr>
-                <td>{{$i}}</td>
-                <td>{{$results->user->name}}</td>
-                <td>{{ $results->laptime}}</td>
-                <td>{{$results->updated_at}}</td>
-            </tr>
-            @php($i++)
-        @endforeach
+            @foreach($allRaces->results->sortBy('laptime') as $results)
+                <tr>
+                    <td>{{$i}}</td>
+                    <td>{{$results->user->name}}</td>
+                    <td>{{ $results->laptime}}</td>
+                    <td>{{$results->updated_at}}</td>
+                </tr>
+                @php($i++)
+            @endforeach
 
 
     </table>
