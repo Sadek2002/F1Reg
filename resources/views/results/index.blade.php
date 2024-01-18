@@ -8,26 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Results</title>
-    <style>
-        .container {
-            margin: 10px;
-        }
-
-        table {
-            border-radius: 10px;
-            border: 1px solid white;
-            background-color: #484444;
-            margin: auto;
-            width: 50%;
-            z-index: 1;
-            position: relative;
-        }
-
-        table.text-white {
-            border-collapse: separate;
-            border-spacing: 10px;
-        }
-    </style>
 </head>
 
 <body class="bg-dark">
@@ -37,17 +17,19 @@
     </div>
 
     <div class="container">
-        <table class="text-white mb-5">
+        <table class="text-white mb-5" width="70%">
             <th>User ID</th>
+            <th>User name</th>
             <th>Race Name</th>
             <th>Laptime</th>
             <th>Edit</th>
             <th>Delete</th>
             @foreach ($raceResults as $raceResult)
                 <tr>
-                    <td style="width: 15%">{{ $raceResult->result->user_id }}</td>
-                    <td style="width: 50%">{{ $raceResult->race->racename }}</td>
-                    <td style="width: 10%">{{ $raceResult->result->laptime }}</td>
+                    <td style="width: 10%">{{ $raceResult->result->user_id }}</td>
+                    <td style="width: 25%">{{ $raceResult->result->user->name }}</td>
+                    <td style="width: 25%">{{ $raceResult->race->racename }}</td>
+                    <td style="width: 20%">{{ $raceResult->result->laptime }}</td>
                     <td style="width: 10%"><a href="{{ route('results.edit', $raceResult->result->id) }}"
                             class="btn btn-primary">Edit</a>
                     </td>
@@ -55,7 +37,7 @@
                         style="display: inline-block">
                         @csrf
                         @method('DELETE')
-                        <td style="width: 15%"><button type="submit" class="btn btn-danger"
+                        <td style="width: 10%"><button type="submit" class="btn btn-danger"
                                 onclick="return confirm('Are you sure you want to delete this result?')">Delete</button>
                         </td>
                     </form>

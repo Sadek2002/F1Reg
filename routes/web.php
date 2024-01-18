@@ -15,7 +15,7 @@ Route::view('/admin', 'admin');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // profiles
-Route::resource('users', UserController::class);
+Route::resource('users', UserController::class)->names('users');
 
 // results
 Route::resource('results', ResultController::class);
