@@ -30,8 +30,13 @@ class HomepageController extends Controller
 
     public function index()
     {
-        $raceResults = RaceResult::with(['race', 'result'])->get();
-
-        return view('homepage', ['raceResults' => $raceResults]);
+        /**
+         * In the index function $race finds the latest race id and display the data of it in our leaderboard.
+         * $races grabs all the available races and passes the 'id, racename and created_at'.
+         * We need this for the next function to display a specific race.
+         */
+        $race = race::latest('id')->first();;
+        $races = race::all('id', 'racename');
+        return view('homepage', compact(['race', 'races']));
     }
 }
