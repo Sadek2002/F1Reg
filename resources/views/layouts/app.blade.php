@@ -59,6 +59,9 @@
                         <li class="nav-item">
                             <a href="{{ route('users.index') }}" class="nav-link">users</a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('leaderboards') }}" class="nav-link">leaderboards</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

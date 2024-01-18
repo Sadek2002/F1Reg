@@ -22,7 +22,7 @@ class RaceFactory extends Factory
      * The factory will create a race for us. this is very useful for testing.
      */
         return [
-            'racename' => fake()->text(),
+            'racename' => fake()->city(),
         ];
     }
 }

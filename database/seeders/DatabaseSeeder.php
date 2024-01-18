@@ -8,21 +8,20 @@ use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
-     */
+     * Seed the application's database.*/
     public function run(): void
     {
-        //\App\Models\User::factory(10)->create();
 
+        //We generate an admin user with a set password and email, so we can always log in after a seed.
         \App\Models\User::factory()->create([
-            'name' => 'Renas',
-            'email' => 'renas@gmail.com',
+            'name' => 'admin',
+            'password'=> 'admin123',
+            'email' => 'admin@gmail.com',
             'userRole' => '1',
         ]);
-
-        \App\Models\result::factory(10)->create();
-
-        \App\Models\race::factory(10)->create();
+        //with $this->call we call our Profile seeder & race_result class and run the class to seed our database.
+        $this->call(ProfileSeeder::class);
+        $this->call(race_result::class);
 
     }
 }
