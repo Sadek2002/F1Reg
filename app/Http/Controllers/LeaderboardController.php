@@ -14,9 +14,9 @@ class LeaderboardController extends Controller
      */
     public function index()
     {
-        $race = race::latest()->first();
+
         $races = race::all('id', 'racename');
-        return view('leaderboards', compact(['race', 'races']));
+        return view('leaderboards', compact([ 'races']));
     }
 
     public function races($id)

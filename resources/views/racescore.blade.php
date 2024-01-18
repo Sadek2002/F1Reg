@@ -81,8 +81,8 @@
 
         </table>
     @else
-        <h1>Hey the race u tried searching for does not exist.</h1>
-        <a href="{{ route('leaderboards') }}">Click me to go back to Leaderboards</a>
+        <h1 class="text-danger">Hey the race u tried searching for does not exist.</h1>
+        <a class="text-decoration-underline text-white" href="{{ route('leaderboards') }}">Click me to go back to Leaderboards</a>
         @endif
     </div>
     {{-- @include('layouts.footer'); --}}
