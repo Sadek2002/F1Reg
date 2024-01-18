@@ -11,6 +11,8 @@
     <title>Create Race</title>
 </head>
 
+@include('layouts.header');
+
 <body class="bg-dark">
     <div class="mt-4 p-5  text-white rounded">
         <h1>F1 Registration App | Results page</h1>
