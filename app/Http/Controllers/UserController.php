@@ -44,7 +44,6 @@ class UserController extends Controller
             'userRole' => 'required|in:0,1',
         ]);
 
-        // Remove the hardcoded 'id' input
         User::create($request->all());
 
         return redirect()->route('users.index')->with('success', 'User created successfully');
@@ -53,12 +52,11 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show(User $user, RaceResult $raceResult)
     {
-        $raceResults = RaceResult::join('results', 'race_results.result_id', '=', 'results.id')
-            ->where('results.user_id', $user->id)
-            ->with(['race', 'result'])
-            ->get();
+        $raceResults = RaceResult::whereHas('result', function ($query) use ($user) {
+            $query->where('user_id', $user->id);
+        })->with(['race', 'result'])->get();
 
         return view('users.show', compact('user', 'raceResults'));
     }
@@ -101,7 +99,7 @@ class UserController extends Controller
             $data['userRole'] = $request->input('userRole');
         }
 
-        $user->update($data); 
+        $user->update($data);
 
         return redirect()->route('users.index')->with('success', 'User updated successfully');
     }

@@ -1,4 +1,4 @@
-@extends('boostrap.app')
+@extends('bootstrap.app')
 
 <!DOCTYPE html>
 <html lang="en">
