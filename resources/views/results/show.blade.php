@@ -6,7 +6,6 @@
         <p>SHOW</p>
     </div>
     <div class="col-8 offset-2">
-        {{$profile->firstname}}
+        {{ $result->laptime }}
     </div>
-
 @endsection
