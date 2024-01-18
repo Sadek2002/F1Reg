@@ -17,7 +17,7 @@
         }
 
         .background-image {
-            background-image: url('images/background-image.jpg');
+            background-image: url('../images/background-image.jpg');
             background-repeat: no-repeat;
             background-size: cover;
             flex: 1;
