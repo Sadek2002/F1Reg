@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreUserRequest;
-use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use App\Models\RaceResult;
 
-class UserController extends Controller
+class ProfileController extends Controller
 {
-    // Auth
-    public function __construct()
+    /**
+     * Display the specified resource.
+     */
+    public function show(User $user, RaceResult $raceResult)
     {
-        $this->middleware('auth');
+        $raceResults = RaceResult::whereHas('result', function ($query) use ($user) {
+            $query->where('user_id', $user->id);
+        })->with(['race', 'result'])->get();
+
+        return view('profiles.show', compact('user', 'raceResults'));
     }
 
     /**
@@ -21,82 +25,22 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all()->sortByDesc('updated_at');
-        return view('users.index', compact('users'));
+        return view('profiles.index', compact('users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function searchUser()
     {
-        return view('users.create');
-    }
+        /**
+         * We can construct our query with the user::query, in there we do our where query that searches based on the get request.
+         * We then execute the query and send the result to the profile view.
+         */
+        $query = user::query();
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreUserRequest $request)
-    {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            // Add other validation rules as needed
-        ]);
-
-        User::create($request->all());
-
-        return redirect()->route('users.index')->with('success', 'User created successfully');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(User $user)
-    {
-        $raceResults = RaceResult::join('results', 'race_results.result_id', '=', 'results.id')
-            ->where('results.user_id', $user->id)
-            ->with(['race', 'result'])
-            ->get();
-
-        return view('users.show', compact('user', 'raceResults'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(User $user)
-    {
-        $this->authorize('update', $user);
-
-        return view('users.edit', compact('user'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateUserRequest $request, User $user)
-    {
-        $this->authorize('update', $user);
-
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,' . $user->id,
-            // Add other validation rules as needed
-        ]);
-
-        $user->update($request->all());
-
-        return redirect()->route('users.index')->with('success', 'User updated successfully');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(User $user)
-    {
-        $this->authorize('delete', $user);
-
-        $user->delete();
-        return redirect()->route('users.index')->with('success', 'User deleted successfully');
+        if (request()->has('search')) {
+            $query->where('name', '=', request()->get('search'));
+            $user = $query->pluck('id')->first();
+        }
+        
+        return view('profiles.show', compact('user'));
     }
 }

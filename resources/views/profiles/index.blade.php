@@ -1,34 +1,29 @@
-@extends('layouts.app')
+@extends('bootstrap.app')
 
-@section('content')
-    <div class="mt-4 p-5 bg-info text-white rounded">
-        <h1>F1 Registration App</h1>
-        <p>INDEX</p>
-        <a href="{{ route('profiles.create') }}" class="btn btn-sm btn-outline-primary">Create Profile</a>
-    </div>
+    <!DOCTYPE html>
+<html lang="en">
 
-    <div class="container">
-        <table class="table">
-            <th>User ID</th>
-            <th>Firstname</th>
-            <th>Lastname</th>
-            <th>Edit</th>
-            <th>Delete</th>
-            @foreach ($profiles as $profile)
-                <tr>
-                    <td>{{ $profile->user_id }}</td>
-                    <td>{{ $profile->firstname }}</td>
-                    <td>{{ $profile->lastname }}</td>
-                    <td><a href="{{ route('profiles.edit', $profile->id) }}" class="btn btn-primary">Edit</a></td>
-                    <form action="{{ route('profiles.destroy', $profile->id) }}" method="post" style="display: inline-block">
-                        @csrf
-                        @method('DELETE')
-                        <td><button type="submit" class="btn btn-danger"
-                                onclick="return confirm('Are you sure you want to delete this profile?')">Delete</button>
-                        </td>
-                    </form>
-                </tr>
-            @endforeach
-        </table>
-    </div>
-@endsection
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <title>Document</title>
+</head>
+
+<body class="background-image">
+@include('layouts.header');
+<table class="text-white mb-5" width="70%">
+    <th>Name</th>
+    <th>View Profile</th>
+    {{-- This foreach loops the amount of current users and shows them. --}}
+    @foreach ($users as $user)
+        <tr>
+            <td style="width: 30%">{{ $user->name }}</td>
+            <td style="width: 10%"><a href="{{ route('users.show', $user->id) }}"
+                    class="btn btn-primary">View Profile</a></td>
+        </tr>
+    @endforeach
+</table>
+</body>
+
+</html>

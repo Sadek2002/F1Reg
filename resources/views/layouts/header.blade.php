@@ -40,6 +40,7 @@
                         href="{{ route('homepage.index') }}">Home</a>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('leaderboards') }}">Leaderboards</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('profiles') }}">All Players</a></li>
                 @auth
                     <!-- This only shows if the user is logged in by using the blade auth method built in laravel -->
                     <li class="nav-item">
