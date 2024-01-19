@@ -37,7 +37,7 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisterController::class, 'register']);
 
 Route::get('uploadresult/{id}', [App\Http\Controllers\LeaderboardController::class, 'getRaceid'])->name('uploadresult');
 Route::post('/send-score', [App\Http\Controllers\LeaderboardController::class, 'create'])->name('send.score');
-
