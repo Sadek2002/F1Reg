@@ -21,12 +21,6 @@ class HomepageController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    // public function index()
-    // {
-    //     return view('homepage');
-
-    // }
-
 
     public function index()
     {

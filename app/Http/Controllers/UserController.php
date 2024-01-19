@@ -20,6 +20,13 @@ class UserController extends Controller
      */
     public function index()
     {
+        $user = auth()->user();
+        if ($user->userRole == 1) {
+            $this->authorize('create', $user);
+        } else {
+            return redirect()->route('homepage.index');
+        }
+
         $users = User::all()->sortByDesc('updated_at');
         return view('users.index', compact('users'));
     }
@@ -27,8 +34,15 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(User $user)
     {
+        $user = auth()->user();
+        if ($user->userRole == 1) {
+            $this->authorize('create', $user);
+        } else {
+            return redirect()->route('homepage.index');
+        }
+
         return view('users.create');
     }
 
@@ -66,7 +80,15 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $this->authorize('update', $user);
+        $authenticatedUser = auth()->user();
+
+        // Check if the authenticated user is an admin
+        if ($authenticatedUser->userRole == 1) {
+            $this->authorize('update', $user);
+        } else {
+            // If not an admin, redirect to home
+            return redirect()->route('homepage.index');
+        }
 
         return view('users.edit', compact('user'));
     }
@@ -76,12 +98,19 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        $this->authorize('update', $user);
+        // Check if the authenticated user is an admin
+        $authenticatedUser = auth()->user();
+        if ($authenticatedUser->userRole == 1) {
+            // Admins can update any user
+            $this->authorize('update', $user);
+        } else {
+            // Non-admin users are not allowed to update other users
+            return redirect()->route('homepage.index');
+        }
 
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $user->id,
-            // Add other validation rules as needed
         ]);
 
         $data = [
@@ -94,11 +123,12 @@ class UserController extends Controller
             $data['password'] = bcrypt($request->input('password'));
         }
 
-        // Update the userRole if it exists in the request
+        // Update the userRole in the request
         if ($request->filled('userRole')) {
             $data['userRole'] = $request->input('userRole');
         }
 
+        // Update the specified user with the provided data
         $user->update($data);
 
         return redirect()->route('users.index')->with('success', 'User updated successfully');
@@ -109,9 +139,15 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $this->authorize('delete', $user);
+        $authenticatedUser = auth()->user();
 
-        $user->delete();
-        return redirect()->route('users.index')->with('success', 'User deleted successfully');
+        if ($authenticatedUser->userRole == 1) {
+            $this->authorize('delete', $user);
+
+            $user->delete();
+            return redirect()->route('users.index')->with('success', 'User deleted successfully');
+        } else {
+            return redirect()->route('homepage.index')->with('error', 'You do not have permission to delete users.');
+        }
     }
 }

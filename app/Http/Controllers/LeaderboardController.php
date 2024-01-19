@@ -41,7 +41,6 @@ class LeaderboardController extends Controller
         if (request()->has('search')) {
             $query->where('racename', '=', request()->get('search'));
             $race = $query->get();
-
         }
         return view('racescore', ['race' => $race]);
     }
@@ -80,7 +79,6 @@ class LeaderboardController extends Controller
         //Attaches the result and race id in our pivot table
         $result->races()->attach($raceId, ['race_id' => $raceId]);
         //Once everything went well we redirect the user back to the leaderboards.
-        return redirect()->route('leaderboards')->with('success', 'Score sent successfully');
+        return redirect()->route('leaderboards');
     }
-
 }

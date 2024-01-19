@@ -25,7 +25,7 @@ class ResultController extends Controller
         if ($user->userRole == 1) {
             $this->authorize('create', $result);
         } else {
-            return redirect()->route('home');
+            return redirect()->route('homepage');
         }
 
         return view('results.create');
@@ -44,8 +44,14 @@ class ResultController extends Controller
 
     public function index()
     {
-        $raceResults = RaceResult::with(['race', 'result'])->get();
+        $user = auth()->user();
+        if ($user->userRole == 1) {
+            $this->authorize('create', $user);
+        } else {
+            return redirect()->route('homepage.index');
+        }
 
+        $raceResults = RaceResult::with(['race', 'result'])->get();
         return view('results.index', ['raceResults' => $raceResults]);
     }
 
@@ -55,7 +61,7 @@ class ResultController extends Controller
         if ($user->userRole == 1) {
             $this->authorize('viewAny', $result);
         } else {
-            return redirect()->route('home');
+            return redirect()->route('homepage.index');
         }
 
         return view('results.show', compact('result'));
@@ -67,7 +73,7 @@ class ResultController extends Controller
         if ($user->userRole == 1) {
             $this->authorize('update', $result);
         } else {
-            return redirect()->route('home');
+            return redirect()->route('homepage.index');
         }
 
         // Bewerken van een profile
@@ -80,7 +86,7 @@ class ResultController extends Controller
         if ($user->userRole == 1) {
             $this->authorize('update', $result);
         } else {
-            return redirect()->route('home');
+            return redirect()->route('homepage');
         }
 
         $request->validate([
@@ -97,7 +103,7 @@ class ResultController extends Controller
         if ($user->userRole == 1) {
             $this->authorize('delete', $result);
         } else {
-            return redirect()->route('home');
+            return redirect()->route('homepage.index');
         }
 
         $result->delete();

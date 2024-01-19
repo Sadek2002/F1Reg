@@ -11,6 +11,7 @@ class ProfileController extends Controller
      * Display the specified resource.
      */
     public function show(User $user, RaceResult $raceResult)
+
     {
         $raceResults = RaceResult::whereHas('result', function ($query) use ($user) {
             $query->where('user_id', $user->id);

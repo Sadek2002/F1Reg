@@ -13,7 +13,8 @@
 <body class="background-image">
     @include('layouts.header');
 
-    <button class="btn btn-primary"><a class="text-decoration-underline text-white" href="{{ route('uploadresult', $allRaces->id) }}">Submit your result!</a></button>
+    <button class="submit-button btn btn-primary"><a class="text-decoration-underline text-white"
+            href="{{ route('uploadresult', $allRaces->id) }}">Submit your result!</a></button>
 
     <div class="container mt-5">
         <table class="text-white mb-5" width="70%">

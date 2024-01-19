@@ -47,3 +47,8 @@ table, table.text-white {
 .w-45 {
     width: 45%;
 }
+
+.submit-button {
+    width: 30%;
+    margin: 0 35% 0 35%;
+}
