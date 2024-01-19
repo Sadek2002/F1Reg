@@ -15,6 +15,7 @@
 <table class="text-white mb-5" width="70%">
     <th>Name</th>
     <th>View Profile</th>
+    {{-- This foreach loops the amount of current users and shows them. --}}
     @foreach ($users as $user)
         <tr>
             <td style="width: 30%">{{ $user->name }}</td>
