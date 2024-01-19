@@ -20,7 +20,7 @@
 
     <div class="container mt-4">
         <div>
-            <form method="POST" action="{{ route('users.update', $user->id) }}">
+            <form class="w-45" method="POST" action="{{ route('users.update', $user->id) }}">
                 @csrf
                 @method('PUT')
 

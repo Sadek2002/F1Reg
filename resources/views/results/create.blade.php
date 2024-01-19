@@ -20,7 +20,7 @@
 
     <div class="container mt-4">
         <div>
-            <form method="POST" action="{{ route('results.store') }}">
+            <form class="w-45" method="POST" action="{{ route('results.store') }}">
                 @csrf
 
                 <input type="hidden" value="{{ Auth::user()->id }}" name="user_id">
