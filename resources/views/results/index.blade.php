@@ -15,7 +15,6 @@
 <body class="bg-dark">
     <div class="mt-4 p-5  text-white rounded">
         <h1>F1 Registration App | Results page</h1>
-        <a href="{{ route('results.create') }}" class="btn btn-sm btn-outline-light">Create Result</a>
     </div>
 
     <div class="container">
