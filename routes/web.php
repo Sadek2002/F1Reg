@@ -20,6 +20,7 @@ Route::resource('results', ResultController::class);
 Route::resource('users', UserController::class)->names('users');
 
 // Profiles
+Route::get('profiles', [App\Http\Controllers\ProfileController::class, 'index'])->name('profiles');
 Route::get('/profiles/{user}', [ProfileController::class, 'show']);
 
 // Routes that don't require authentication
