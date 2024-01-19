@@ -6,19 +6,21 @@ use App\Http\Controllers\ResultController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', [HomepageController::class, 'index']);
 
-// Routes that require authentication
-Route::middleware(['auth'])->group(function () {
-    Route::view('/admin', 'admin');
+// Admin
+Route::view('/admin', 'admin');
 
-    // Results
-    Route::resource('results', ResultController::class);
+// Results
+Route::resource('results', ResultController::class);
 
-    // Profiles
-    Route::resource('users', UserController::class)->names('users');
-});
+// Users
+Route::resource('users', UserController::class)->names('users');
+
+// Profiles
+Route::get('/profiles/{user}', [ProfileController::class, 'show']);
 
 // Routes that don't require authentication
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
