@@ -14,6 +14,8 @@ class User extends Authenticatable
 
     /**
      * The attributes that are mass assignable.
+     * The usage of protected makes it so the fillables cant be manually 
+     * changed by sql injection or using other methods (inspect element etc.).
      *
      * @var array<int, string>
      */
@@ -44,10 +46,17 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function profile() {
+    /**  
+     * We define relationships between the tables in this file. 
+     * A user has one profile and a user can have many results (races).
+     */
+
+    public function profile()
+    {
         return $this->hasOne(Profile::class);
     }
-    public function result() {
+    public function result()
+    {
         return $this->hasmany(Result::class);
     }
 }

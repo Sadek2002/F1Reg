@@ -9,17 +9,27 @@ use App\Models\RaceResult;
 
 class UserController extends Controller
 {
-    // Auth
+    /** 
+     * This function makes use of the laravel/bootstrap auth method. 
+     * This makes the website more secure as the user needs to be logged in to access the controller methods.
+     */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    /**
-     * Display a listing of the resource.
+    /** 
+     * This is the home of the users page where the admin can see a display of all results
+     * and he can create, edit and delete users (This is limited to only admin)
      */
     public function index()
     {
+        /** 
+         * This auth() code is used below for validation that
+         * the logged in user is an admin by checking the user role.
+         * 
+         * If the user is not an admin he will be sent back to the homepage.
+         */
         $user = auth()->user();
         if ($user->userRole == 1) {
             $this->authorize('create', $user);
@@ -31,8 +41,9 @@ class UserController extends Controller
         return view('users.index', compact('users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
+    /** 
+     * This create function checks if the userrole is set to 1 (which is the admin userrole)
+     * Makes it so only the admin can go to the create. (Users get sent to the homepage)
      */
     public function create(User $user)
     {
@@ -46,8 +57,9 @@ class UserController extends Controller
         return view('users.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
+    /** 
+     * This stores the user inputs for the create function
+     * with usage of validate so its secured.
      */
     public function store(StoreUserRequest $request)
     {
@@ -63,8 +75,9 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('success', 'User created successfully');
     }
 
-    /**
-     * Display the specified resource.
+    /** 
+     * This stores the user inputs for the create function
+     * with usage of validate so its secured.
      */
     public function show(User $user, RaceResult $raceResult)
     {
@@ -75,9 +88,7 @@ class UserController extends Controller
         return view('users.show', compact('user', 'raceResults'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    /** This is the edit function of Results also limited to only admin access */
     public function edit(User $user)
     {
         $authenticatedUser = auth()->user();
@@ -93,18 +104,16 @@ class UserController extends Controller
         return view('users.edit', compact('user'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    /** This is the update method for Results this function is limited to admin only */
     public function update(UpdateUserRequest $request, User $user)
     {
         // Check if the authenticated user is an admin
         $authenticatedUser = auth()->user();
         if ($authenticatedUser->userRole == 1) {
-            // Admins can update any user
+            // Admins can update ussers
             $this->authorize('update', $user);
         } else {
-            // Non-admin users are not allowed to update other users
+            // Users get redirected to homepage
             return redirect()->route('homepage.index');
         }
 
@@ -118,24 +127,24 @@ class UserController extends Controller
             'email' => $request->input('email'),
         ];
 
-        // Check if a new password is provided
+        // Checks if the password field has input
         if ($request->filled('password')) {
             $data['password'] = bcrypt($request->input('password'));
         }
 
-        // Update the userRole in the request
+        // Update the userRole given from the dropdown
         if ($request->filled('userRole')) {
             $data['userRole'] = $request->input('userRole');
         }
 
-        // Update the specified user with the provided data
         $user->update($data);
 
         return redirect()->route('users.index')->with('success', 'User updated successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
+    /** 
+     * This is the destroy function which only works if the user is an admin.
+     * This deletes the user you select to delete.
      */
     public function destroy(User $user)
     {

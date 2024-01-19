@@ -8,7 +8,7 @@ use App\Models\RaceResult;
 class ProfileController extends Controller
 {
     /**
-     * Display the specified resource.
+     * Display the specified user profile based on their user ID
      */
     public function show(User $user, RaceResult $raceResult)
 
@@ -21,7 +21,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display all users and sorts by last updated at.
      */
     public function index()
     {
@@ -41,7 +41,7 @@ class ProfileController extends Controller
             $query->where('name', '=', request()->get('search'));
             $user = $query->pluck('id')->first();
         }
-        
+
         return view('profiles.show', compact('user'));
     }
 }

@@ -1,3 +1,5 @@
+@extends('bootstrap.app')
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,34 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <title>Document</title>
-    <style>
-        footer {
-            background-color: black;
-            color: white;
-            padding: 20px 0;
-            flex-shrink: 0;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            /* Center the links horizontally */
-            padding: 10px 0;
-            /* Add padding for better appearance */
-        }
-
-        .footer-link {
-            text-decoration: none;
-            color: white;
-            margin: 0 10px;
-            /* Adjust the space between the links */
-        }
-
-        .footer-link:hover {
-            text-decoration: underline;
-        }
-    </style>
 </head>
 
 <body>

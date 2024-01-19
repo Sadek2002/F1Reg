@@ -52,3 +52,62 @@ table, table.text-white {
     width: 30%;
     margin: 0 35% 0 35%;
 }
+
+/** This is the header styling */
+.nav-item {
+    margin-right: 20px;
+}
+
+.navbar-brand img {
+    padding: 20px;
+}
+
+.nav-item .test {
+    justify-content: space-between
+}
+
+ul {
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+/** This is the footer styling */
+footer {
+    background-color: black;
+    color: white;
+    padding: 20px 0;
+    flex-shrink: 0;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.footer-link {
+    text-decoration: none;
+    color: white;
+    margin: 0 10px;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+/** This is the footer styling */
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.buttonContainer {
+    width: 20%;
+    margin: 0 40% 0 40%;
+}
+
+.button {
+    padding: 10px;
+    margin: 5px 0 5px 0;
+}

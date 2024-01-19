@@ -26,6 +26,8 @@ class UserPolicy
 
     /**
      * Determine whether the user can create models.
+     * This function in the policy makes it so only a user with userRole 1 can create
+     * a Result. (User role 1 is only given to admin!)
      */
     public function create(User $user): bool
     {
@@ -34,6 +36,8 @@ class UserPolicy
 
     /**
      * Determine whether the user can update the model.
+     * This function in the policy makes it so only a user with userRole 1 can update
+     * a Result. (User role 1 is only given to admin!)
      */
     public function update(User $user, User $targetUser): bool
     {
@@ -42,6 +46,8 @@ class UserPolicy
 
     /**
      * Determine whether the user can delete the model.
+     * This function in the policy makes it so only a user with userRole 1 can delete
+     * a Result. (User role 1 is only given to admin!)
      */
     public function delete(User $user, User $targetUser): bool
     {

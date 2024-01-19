@@ -1,3 +1,5 @@
+@extends('bootstrap.app')
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,25 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <title>Document</title>
-    <style>
-        .nav-item {
-            margin-right: 20px;
-        }
-
-        .navbar-brand img {
-            padding: 20px;
-        }
-
-        .nav-item .test {
-            justify-content: space-between
-        }
-
-        ul {
-            border-top-left-radius: 30px;
-            border-bottom-left-radius: 30px;
-        }
-    </style>
 </head>
 
 <body>
@@ -41,8 +26,8 @@
                 </li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('leaderboards') }}">Leaderboards</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('profiles') }}">All Players</a></li>
+                <!-- This auth check checks if the user is logged in and if so it displays the dropdown for a user to see his profile or logout. -->
                 @auth
-                    <!-- This only shows if the user is logged in by using the blade auth method built in laravel -->
                     <li class="nav-item">
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" id="profileDropdown"
@@ -52,6 +37,7 @@
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                                <!-- This href takes the user ID via the Auth method to go to the current logged in user his profile -->
                                 <a class="dropdown-item"
                                     href="{{ route('users.show', ['user' => Auth::user()->id]) }}">Profile</a>
                                 <form method="POST" action="{{ route('logout') }}">
@@ -61,11 +47,25 @@
                             </div>
                         </div>
                     </li>
+                    <!-- This else statement happens if the user is not logged in so it shows a login button instead of a profile icon. -->
                 @else
-                    <!-- If user is not logged in it executes the else statement which shows 'logout' as text -->
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">Login</a>
                     </li>
+                @endauth
+
+
+                <!-- This only displays if the user is userrole 1 which is admin.
+                It does a check and displays the Users and Results. -->
+                @auth
+                    @if (Auth::user()->userRole == 1)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('users.index') }}">Users</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('results.index') }}">Results</a>
+                        </li>
+                    @endif
                 @endauth
             </ul>
         </nav>

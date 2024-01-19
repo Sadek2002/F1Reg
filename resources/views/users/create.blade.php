@@ -42,6 +42,7 @@
                        name="password">
             </div>
 
+            <!-- This dropdown gives the admin to create a user as admin or user. -->
             <div class="mb-3">
                 <label for="userRole" class="form-label text-white">User Role:</label>
                 <select class="form-control" id="userRole" name="userRole">

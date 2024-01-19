@@ -9,6 +9,10 @@ class Profile extends Model
 {
     use HasFactory;
 
+    /**  
+     * We define relationships between the tables in this file. 
+     * A profile belongs to one user and a user can have many results.
+     */
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -19,4 +23,3 @@ class Profile extends Model
         return $this->hasMany(Result::class);
     }
 }
-

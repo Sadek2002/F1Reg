@@ -44,6 +44,7 @@
 
                 <div class="mb-3">
                     <label for="userRole" class="form-label text-white">UserRole:</label>
+                    <!-- This dropdown gives a value to the userRole so a user can be switched to admin or user viceversa. -->
                     <select class="form-control" id="userRole" name="userRole">
                         <option value="0" {{ $user->userRole == 0 ? 'selected' : '' }}>User</option>
                         <option value="1" {{ $user->userRole == 1 ? 'selected' : '' }}>Admin</option>

@@ -7,41 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            margin: 0;
-            padding: 0;
-        }
-
-
-        .background-image {
-            background-image: url('images/background-image.jpg');
-            background-repeat: no-repeat;
-            background-size: cover;
-            flex: 1;
-        }
-
-
-
-
-        table {
-            border-radius: 10px;
-            border: 1px solid white;
-            background-color: #484444;
-            margin: auto;
-            width: 50%;
-            z-index: 1;
-            position: relative;
-        }
-
-        table.text-white {
-            border-collapse: separate;
-            border-spacing: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 
 <body class="background-image">
@@ -57,7 +23,7 @@
             </form>
         </div>
 
-        <table class="text-white mb-5">
+        <table class="text-white mb-5" width="60%">
             {{-- with count 0 we check if the race variable has any elements, if it does it will execute the for each and show the date else it will give u an option to redirect --}}
             @if ($race->count() > 0)
                 <tr>
@@ -86,7 +52,8 @@
         </table>
     @else
         <h1 class="text-danger">Hey the race u tried searching for does not exist.</h1>
-        <a class="text-decoration-underline text-white" href="{{ route('leaderboards') }}">Click me to go back to Leaderboards</a>
+        <a class="text-decoration-underline text-white" href="{{ route('leaderboards') }}">Click me to go back to
+            Leaderboards</a>
         @endif
     </div>
     {{-- @include('layouts.footer'); --}}
