@@ -13,7 +13,6 @@
 <body class="background-image">
 @include('layouts.header');
 
-
 <div class="container mt-5">
     <div>
         <form method="GET" action="{{ route('racescore') }}">
