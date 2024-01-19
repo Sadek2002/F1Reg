@@ -19,7 +19,7 @@
     </div>
 
     <div class="col-8 offset-2">
-        <h2>{{ $user->name . "'s Profile" }}</h2>
+        <h2 class="text-white">{{ $user->name . "'s Profile" }}</h2>
 
         <img src="" alt="">
         <p class="text-white">Name: {{ $user->name }}</p>

@@ -15,7 +15,7 @@ class result extends Model
      * See the comment in database->migration-> Create_race_results_table for more detail about the relationships.
      */
 
-    protected $fillable = ['user_id', 'laptime'];
+    protected $fillable = ['user_Id', 'laptime'];
 
     public function user()
     {
