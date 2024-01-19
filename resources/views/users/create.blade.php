@@ -20,7 +20,7 @@
 
     <div class="container mt-4">
         <div>
-            <form method="POST" action="{{ route('users.store') }}">
+            <form method="POST" action="{{ route('send.score') }}">
                 @csrf
 
                 <div class="mb-3">
