@@ -31,10 +31,6 @@ table.text-white {
     margin: 0 32.5% 0 32.5%;
 }
 
-form {
-    width: 35%;
-}
-
 .container {
     margin: 10px;
 }
@@ -46,4 +42,8 @@ table, table.text-white {
     margin: auto;
     z-index: 1;
     position: relative;
+}
+
+.w-45 {
+    width: 45%;
 }

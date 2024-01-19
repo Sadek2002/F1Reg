@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <title>Document</title>
+    <title>Create Race</title>
 </head>
 
 @include('layouts.header');
@@ -20,17 +20,17 @@
 
     <div class="container mt-4">
         <div>
-            <form class="w-45" action="{{ route('results.update', $result->id) }}" method="POST">
+            <form class="w-45" method="POST" action="{{ route('results.store') }}">
                 @csrf
-                @method('PUT')
+
+                <input type="hidden" value="{{ Auth::user()->id }}" name="user_id">
 
                 <div class="mb-3">
-                    <label for="laptime" class="form-label text-white">Laptime:</label>
-                    <input type="text" class="form-control" value="{{ $result->laptime }}" id="laptime"
+                    <label class="text-white form-label" for="laptime">Laptime:</label>
+                    <input class="form-control" type="text" placeholder="Enter laptime" id="laptime"
                         name="laptime">
                 </div>
-
-                <button type="submit" class="btn btn-primary w-100">Edit Result</button>
+                <button type="submit" class="btn btn-primary w-100">Create Result</button>
             </form>
         </div>
     </div>

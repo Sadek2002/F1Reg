@@ -5,6 +5,7 @@ use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\ResultController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 
 Route::get('/', [HomepageController::class, 'index']);
 
@@ -32,11 +33,8 @@ Route::get('racescore', [App\Http\Controllers\LeaderboardController::class, 'sea
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 
-
-
-
-
-// Leaderboards upload score
 Route::get('uploadresult/{id}', [App\Http\Controllers\LeaderboardController::class, 'getRaceid'])->name('uploadresult');
 Route::post('/send-score', [App\Http\Controllers\LeaderboardController::class, 'create'])->name('send.score');
+
